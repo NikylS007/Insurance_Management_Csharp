@@ -31,6 +31,8 @@ namespace ConsoleApp4
 
                 switch (Switch_Input)
                 {
+
+                    // Customer Registeration
                     case 1:
                         {
                             int Input1 = rand.Next(1111111, 9999999);
@@ -124,6 +126,7 @@ namespace ConsoleApp4
 
                         }
 
+                    // Select Policy Type
                     case 2:
                         {
                         label14:
@@ -149,6 +152,7 @@ namespace ConsoleApp4
 
                                 switch (P_in)
                                 {
+                                // General Insurance
                                     case 1:
                                         {
                                         label11:
@@ -193,7 +197,9 @@ namespace ConsoleApp4
                                             break;
 
                                         }
-                                    case 2:
+
+                                // Health Insurance
+                                case 2:
                                         {
                                         label12:
                                         Console.WriteLine("Select any one Health insurance policy from below options - ");
@@ -237,7 +243,9 @@ namespace ConsoleApp4
 
                                             break;
                                         }
-                                    case 3:
+
+                                // Motor Insurance
+                                case 3:
                                         {
                                         label13:
                                         Console.WriteLine("Select any one Motor insurance policy from below options - ");
@@ -286,29 +294,46 @@ namespace ConsoleApp4
                         }
 
                     case 3:
+                        // case 3 is for fetching customer information by customer ID
                         {
+                        // label15 is used for implementing a loop for getting input from the user
                         label15:
                             Console.Write("Enter the seven digit Customer_id : ");
                             string Cust_Id = Console.ReadLine();
                             Console.WriteLine();
-                            if (Cust_Id.Length != 7) { Console.WriteLine("Invalid Input"); goto label15; }
+                            // Checking if the length of the entered customer ID is 7
+                            if (Cust_Id.Length != 7)
+                            {
+                                Console.WriteLine("Invalid Input");
+                                // If the length is not 7, the program goes back to label15 to ask for input again
+                                goto label15;
+                            }
+                            // Calling the method `fetchCustomerid` on an object of type `i` with the entered customer ID
                             string id = i.fetchCustomerid(Cust_Id);
+                            // Checking if the entered customer ID matches the returned customer ID
                             if (Cust_Id != id)
                             {
                                 Console.WriteLine("Customer is not registered...\n");
+                                // If the customer ID is not registered, the program goes back to label1 to display the menu again
                                 goto label1;
                             }
                             else
                             {
+                                // If the customer ID is registered, calling the `showAll` method on an object of type `c` with the entered customer ID
                                 c.showAll(Cust_Id);
                             }
+                            // Exiting the case statement
                             break;
                         }
                     case 4:
+                        // case 4 is for showing information of all customers
                         {
+                            // Calling the `showAll` method on an object of type `c` without any parameters
                             c.showAll();
+                            // Exiting the case statement
                             break;
                         }
+
 
                     case 5:
                         // case 5 is for exiting the program
