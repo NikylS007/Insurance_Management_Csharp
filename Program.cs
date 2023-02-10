@@ -109,7 +109,7 @@ namespace ConsoleApp4
                             Customer Customer_Obj = new Customer(Input1, Input2, Input3, Input4, Input5, Input6, Input7, Input8);
 
                             // Adding the customer to the database and checking the result
-                            int n = i.AddCustomer(Input1.ToString(), Input2, Input3, Input4, Input5, Input6.ToString(), Input
+                            int n = i.AddCustomer(Input1.ToString(), Input2, Input3, Input4, Input5, Input6.ToString(), Input7, Input8 );
                 
                             // To check the customer is already present or not
                             if (n!=0)
@@ -311,14 +311,17 @@ namespace ConsoleApp4
                         }
 
                     case 5:
+                        // case 5 is for exiting the program
                         {
                             Console.WriteLine("Welcome Back!");
                             Console.ReadKey();
+                            // Terminating the program by returning from the main method
                             return;
                         }
-
                     default:
+                        // For all other inputs, the program displays an error message to the user
                         Console.WriteLine("Please Select from the below Choice ");
+                        // Exiting the case statement
                         break;
 
                 }
@@ -326,19 +329,24 @@ namespace ConsoleApp4
                 goto label1;
 
             }
+
+            // The program has three catch blocks to handle exceptions
+            // The first catch block catches the FormatException that occurs when the user enters a value that is not a number
             catch (FormatException)
             {
                 Console.WriteLine("Entered value is not a number.");
-                
             }
-            catch(CustomerNotFound e )
+            // The second catch block catches the CustomerNotFound exception and displays the error message
+            catch (CustomerNotFound e)
             {
                 Console.WriteLine(e.Message);
             }
+            // The third catch block catches the CustomerAlreadyPresent exception and displays the error message
             catch (CustomerAlreadyPresent e)
             {
                 Console.WriteLine(e.Message);
             }
+            // After the catch blocks, the program goes back to label1 to display the menu again
             Console.WriteLine();
             goto label1;
         }
